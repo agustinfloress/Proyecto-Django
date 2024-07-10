@@ -1,0 +1,86 @@
+{% extends "ProyectoWebApp/base.html" %}
+{% load static %}
+
+{% block content %}
+  <!-- Heading -->
+  <section class="page-section clearfix">
+    <div class="container" style="background-color: #000000;">
+      <div class="intro">
+        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'ProyectoWebApp/img/boca.jpg' %}" alt="">
+        <div class="intro-text left-0 text-center bg-faded p-5 rounded" style="background-color: #ddc748; color: #150d8f;">
+          <h2 class="section-heading mb-4" style="font-size: 24px; font-weight: bold;">
+            <span class="section-heading-upper">El Único Grande</span>
+            <span class="section-heading-lower">El mejor stock</span>
+          </h2>
+          <p class="mb-3" style="font-size: 18px; font-weight: bold;">Bienvenido a la página oficial de vestimenta del Club Atlético Boca Juniors. Encontrá información relevante y la indumentaria del mejor equipo de Argentina. Porque para ser un campeón, tenés que vestirte como un campeón.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  <section class="page-section clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 position-relative">
+                <a href="{% url 'Tienda' %}#hombres">
+                    <div class="image-container">
+                        <img src="{% static 'ProyectoWebApp/img/hombres.jpg' %}" class="img-fluid" alt="Hombres">
+                        <div class="image-caption">Hombres</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 position-relative">
+                <a href="{% url 'Tienda' %}#mujeres">
+                    <div class="image-container">
+                        <img src="{% static 'ProyectoWebApp/img/mujeres.jpg' %}" class="img-fluid" alt="Mujeres">
+                        <div class="image-caption">Mujeres</div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 position-relative">
+                <a href="{% url 'Tienda' %}#ninos">
+                    <div class="image-container">
+                        <img src="{% static 'ProyectoWebApp/img/ninos.jpg' %}" class="img-fluid" alt="Niños">
+                        <div class="image-caption">Niños</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <style>
+    .position-relative {
+      position: relative;
+    }
+
+    .image-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .image-container img {
+        transition: transform 0.3s; /* Transición suave de 0.3 segundos */
+    }
+
+    .image-container:hover img {
+        transform: scale(1.1); /* Escala la imagen al 110% cuando se pasa el cursor */
+    }
+    .image-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.5); /* Fondo negro transparente */
+      color: white; /* Color de letras blanco */
+      text-align: center;
+      padding: 10px;
+      margin: 0; /* Elimina el margen predeterminado */
+    }
+  </style>
+
+
+  
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "ProyectoWebApp/base.html" %}
+{% load static %}
+{% block content %}
+
+<style>
+    /* Estilos para el carro */
+.carro {
+  position: fixed;
+  top: 420;
+  right: 40;
+  z-index: 1000;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+}
+
+/* Estilos para los títulos de las secciones */
+.section-title {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 24px; /* Tamaño de fuente más grande */
+  color: white; /* Color de texto blanco */
+}
+
+/* Estilos para las tarjetas de producto */
+.card {
+  height: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Escala la imagen para que cubra todo el contenedor sin distorsión */
+  border-bottom: 1px solid #ddd;
+}
+
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.card-footer {
+  padding: 10px;
+  text-align: center;
+}
+
+/* Separación entre las tarjetas */
+.card + .card {
+  margin-top: 20px;
+}
+
+</style>
+
+<!-- Carro de compras -->
+<div class="carro">
+    {% if request.user.is_authenticated %}
+        {% include "carro/widget.html" %}
+    {% else %}
+        <div class="alert alert-danger text-center">Debes iniciar sesión.</div> 
+    {% endif %}
+</div>
+
+<div class="container">
+    <div id="hombres" class="row mb-4">
+        <div class="col-md-12">
+            <h2 class="section-title section-title-hombres">Hombres</h2>
+        </div>
+        {% for categoria in categorias_hombres %}
+        {% for producto in categoria.producto_set.all %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="{{ producto.imagen.url }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.precio }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success" id="agregar-carro">Comprar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+
+    <div id="mujeres" class="row mb-4">
+        <div class="col-md-12">
+            <h2 class="section-title section-title-mujeres">Mujeres</h2>
+        </div>
+        {% for categoria in categorias_mujeres %}
+        {% for producto in categoria.producto_set.all %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="{{ producto.imagen.url }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.precio }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success">Comprar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+    <div id="ninos" class="row mb-4">
+        <div class="col-md-12">
+            <h2 class="section-title section-title-ninos">Niños</h2>
+        </div>
+        {% for categoria in categorias_ninos %}
+        {% for producto in categoria.producto_set.all %}
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="{{ producto.imagen.url }}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">{{ producto.precio }}</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success">Comprar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+    
+    
+</div>
+
+{% endblock %}
+
